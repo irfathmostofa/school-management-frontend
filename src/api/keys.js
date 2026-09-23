@@ -1,0 +1,16 @@
+export const keys = {
+  employees: (filters) => ["employees", filters],
+  employee: (id) => ["employee", id],
+  leave: (filters) => ["leave", filters],
+  fees: (filters) => ["fees", filters],
+  users: (filters) => ["users", filters],
+  campus: () => ["campus"],
+  session: () => ["session"],
+  classes: (filters) => ["classes", filters],
+  sections: (filters) => ["sections", filters],
+  subjects: (filters) => ["subjects", filters],
+  departments: () => ["departments"],
+  designations: () => ["designations"],
+  dashboard: (filters) => ["dashboard", filters],
+  resource: (id, filters) => ["resource", id, filters],
+};
