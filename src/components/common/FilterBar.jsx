@@ -17,7 +17,7 @@ export function FilterBar({
   const patch = (next) => onChange?.({ ...value, ...next });
 
   return (
-    <div className="mb-4 flex flex-wrap items-end gap-3 rounded-xl border border-border bg-card p-3">
+    <div className="no-print mb-4 flex flex-wrap items-end gap-3 rounded-xl border border-border bg-card p-3 shadow-[0_1px_2px_rgba(16,36,62,0.04)]">
       <div className="min-w-52 flex-1">
         <Input
           placeholder="Search..."

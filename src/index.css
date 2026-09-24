@@ -1,30 +1,100 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Hind Siliguri";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/hind-siliguri-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hind Siliguri";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/hind-siliguri-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hind Siliguri";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/hind-siliguri-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hind Siliguri";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/hind-siliguri-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans Bengali";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/noto-sans-bengali-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans Bengali";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/noto-sans-bengali-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Serif Bengali";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/noto-serif-bengali-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Serif Bengali";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/noto-serif-bengali-700.ttf") format("truetype");
+}
+
 @theme {
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  --color-brand: #3d9cf0;
-  --color-background: oklch(0.985 0.004 247);
-  --color-foreground: oklch(0.21 0.03 255);
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.21 0.03 255);
-  --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.21 0.03 255);
-  --color-primary: #3d9cf0;
-  --color-primary-foreground: oklch(0.99 0 0);
-  --color-secondary: oklch(0.96 0.01 247);
-  --color-secondary-foreground: oklch(0.25 0.03 255);
-  --color-muted: oklch(0.96 0.008 247);
-  --color-muted-foreground: oklch(0.5 0.02 255);
-  --color-accent: oklch(0.95 0.02 240);
-  --color-accent-foreground: oklch(0.25 0.04 255);
-  --color-destructive: oklch(0.58 0.22 27);
-  --color-destructive-foreground: oklch(0.99 0 0);
-  --color-border: oklch(0.91 0.01 247);
-  --color-input: oklch(0.91 0.01 247);
-  --color-ring: #3d9cf0;
-  --radius-lg: 0.75rem;
-  --radius-md: 0.5rem;
-  --radius-sm: 0.375rem;
+  --font-sans: "Hind Siliguri", "Noto Sans Bengali", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif Bengali", "Iowan Old Style", Palatino, Georgia, ui-serif, serif;
+  --color-navy: #10243e;
+  --color-navy-deep: #0b1a2e;
+  --color-navy-mid: #1a3b5c;
+  --color-gold: #c4a35a;
+  --color-gold-soft: #e8d5a3;
+  --color-brand: #1a3b5c;
+  --color-background: #f5f1e8;
+  --color-foreground: #1a2332;
+  --color-card: #fffdf8;
+  --color-card-foreground: #1a2332;
+  --color-popover: #fffdf8;
+  --color-popover-foreground: #1a2332;
+  --color-primary: #1a3b5c;
+  --color-primary-foreground: #fffdf8;
+  --color-secondary: #efe8d8;
+  --color-secondary-foreground: #1a2332;
+  --color-muted: #efe8d8;
+  --color-muted-foreground: #6e6558;
+  --color-accent: #efe6d0;
+  --color-accent-foreground: #1a2332;
+  --color-destructive: oklch(0.55 0.2 27);
+  --color-destructive-foreground: #fffdf8;
+  --color-border: #e4dccb;
+  --color-input: #e4dccb;
+  --color-ring: #c4a35a;
+  --radius-lg: 0.85rem;
+  --radius-md: 0.55rem;
+  --radius-sm: 0.4rem;
 }
 
 @layer base {
@@ -36,6 +106,7 @@
   body,
   #root {
     min-height: 100%;
+    height: 100%;
   }
 
   body {
@@ -43,5 +114,86 @@
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-feature-settings: "kern" 1, "liga" 1;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body {
+    font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Noto Serif Bengali", "Hind Siliguri", serif !important;
+    color: #111 !important;
+  }
+
+  .no-print,
+  aside,
+  header,
+  [data-radix-portal],
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  main {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc !important;
+    color: #111 !important;
+    background: #fff !important;
+  }
+
+  th {
+    font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif !important;
+    font-weight: 600 !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
   }
 }

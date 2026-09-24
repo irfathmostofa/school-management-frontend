@@ -6,6 +6,7 @@ import { unwrapList, unwrapRecord } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "@/components/common/DataTable";
 import { PageHeader } from "@/components/common/PageHeader";
+import { PrintButton } from "@/components/common/PrintButton";
 
 function pickStats(record) {
   if (!record || typeof record !== "object") return [];
@@ -60,6 +61,7 @@ export function StudentDashboardPage() {
       <PageHeader
         title={`Hi ${user?.full_name || "student"}`}
         description="Your class work, notices, and attendance live here."
+        extra={<PrintButton />}
       />
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {tiles.map((tile) => (

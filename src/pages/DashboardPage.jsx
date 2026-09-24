@@ -1,22 +1,35 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { CalendarDays, CalendarOff, Users, Wallet } from "lucide-react";
 import { post } from "@/api/client";
 import { keys } from "@/api/keys";
 import { PageHeader } from "@/components/common/PageHeader";
 import { FilterBar } from "@/components/common/FilterBar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { DataTable } from "@/components/common/DataTable";
 import { unwrapList, unwrapRecord } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
+import { PrintButton } from "@/components/common/PrintButton";
 
-function StatCard({ label, value }) {
+const STAT_ICONS = [Users, Wallet, CalendarOff, CalendarDays];
+
+function StatCard({ label, value, index = 0 }) {
+  const Icon = STAT_ICONS[index % STAT_ICONS.length];
   return (
-    <Card>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{label}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-2xl font-semibold">{value ?? "—"}</p>
+    <Card className="relative overflow-hidden">
+      <span className="absolute inset-x-0 top-0 h-0.5 bg-gold" />
+      <CardContent className="flex items-start justify-between p-5">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            {label}
+          </p>
+          <p className="mt-2 font-serif text-[1.7rem] font-semibold leading-none text-navy">
+            {value ?? "—"}
+          </p>
+        </div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-gold">
+          <Icon className="h-4 w-4" />
+        </div>
       </CardContent>
     </Card>
   );
@@ -53,25 +66,35 @@ export function DashboardPage() {
   const record = unwrapRecord(stats.data);
   const cards = pickStats(record?.resMsg || record);
 
+  const fallback = [
+    { label: "Students", value: "—" },
+    { label: "Staff", value: "—" },
+    { label: "Fees", value: "—" },
+    { label: "Leave", value: leave.data?.length ?? "—" },
+  ];
+  const shown = stats.isLoading
+    ? Array.from({ length: 4 }).map((_, i) => ({ label: "Loading", value: "...", index: i }))
+    : (cards.length ? cards : fallback);
+
   return (
     <>
-      <PageHeader title="Dashboard" description="Live campus snapshot from /server/dashboardStat." />
+      <PageHeader
+        title="Dashboard"
+        description="Live enrolment, staff, and operations at a glance."
+        extra={<PrintButton />}
+      />
       <FilterBar value={filters} onChange={setFilters} showSession={false} />
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {stats.isLoading
-          ? Array.from({ length: 4 }).map((_, i) => <StatCard key={i} label="Loading" value="..." />)
-          : cards.length
-            ? cards.map((card) => <StatCard key={card.label} {...card} />)
-            : [
-                <StatCard key="students" label="Students" value="—" />,
-                <StatCard key="staff" label="Staff" value="—" />,
-                <StatCard key="fees" label="Fees" value="—" />,
-                <StatCard key="leave" label="Leave" value={leave.data?.length ?? "—"} />,
-              ]}
+        {shown.map((card, i) => (
+          <StatCard key={card.label + i} label={card.label} value={card.value} index={i} />
+        ))}
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
-        <div>
-          <h2 className="mb-3 text-sm font-semibold">Leave requests</h2>
+        <section>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="font-serif text-base font-semibold text-navy">Leave requests</h2>
+            <span className="text-[11px] uppercase tracking-[0.16em] text-gold">HR</span>
+          </div>
           <DataTable
             columns={[
               { header: "Applicant", key: "applicantName" },
@@ -83,9 +106,12 @@ export function DashboardPage() {
             data={leave.data}
             loading={leave.isLoading}
           />
-        </div>
-        <div>
-          <h2 className="mb-3 text-sm font-semibold">Events and news</h2>
+        </section>
+        <section>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="font-serif text-base font-semibold text-navy">Events and news</h2>
+            <span className="text-[11px] uppercase tracking-[0.16em] text-gold">Campus</span>
+          </div>
           <DataTable
             columns={[
               { header: "Event", key: "eventName" },
@@ -96,7 +122,7 @@ export function DashboardPage() {
             data={events.data}
             loading={events.isLoading}
           />
-        </div>
+        </section>
       </div>
     </>
   );

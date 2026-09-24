@@ -5,6 +5,7 @@ import { DataTable } from "@/components/common/DataTable";
 import { Card, CardContent } from "@/components/ui/card";
 import { unwrapList } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
+import { PrintButton } from "@/components/common/PrintButton";
 
 export function PortalDataPage({
   title,
@@ -25,7 +26,7 @@ export function PortalDataPage({
 
   return (
     <>
-      <PageHeader title={title} description={description} />
+      <PageHeader title={title} description={description} extra={<PrintButton />} />
       <Card>
         <CardContent className="p-0">
           <DataTable

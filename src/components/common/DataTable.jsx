@@ -39,14 +39,14 @@ export function DataTable({
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card">
+      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(16,36,62,0.04)]">
       <Table>
         <TableHeader>
           <TableRow>
             {columns.map((col) => (
               <TableHead key={col.key || col.header}>{col.header}</TableHead>
             ))}
-            {onRowAction ? <TableHead className="w-12 text-right">Actions</TableHead> : null}
+            {onRowAction ? <TableHead className="no-print w-12 text-right">Actions</TableHead> : null}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -59,7 +59,7 @@ export function DataTable({
                   </TableCell>
                 ))}
                 {onRowAction ? (
-                  <TableCell>
+                  <TableCell className="no-print">
                     <Skeleton className="ml-auto h-4 w-8" />
                   </TableCell>
                 ) : null}
@@ -80,7 +80,7 @@ export function DataTable({
                   </TableCell>
                 ))}
                 {onRowAction ? (
-                  <TableCell className="text-right">
+                  <TableCell className="no-print text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">

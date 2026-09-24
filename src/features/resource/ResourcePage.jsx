@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { FormSelect } from "@/components/common/FormSelect";
 import { useCampuses, useClasses, useDepartments, useDesignations, useSessions } from "@/hooks/useLookups";
 import { unwrapList } from "@/lib/utils";
+import { PrintButton } from "@/components/common/PrintButton";
 
 function emptyForm(fields) {
   return fields.reduce((acc, field) => {
@@ -205,6 +206,7 @@ export function ResourcePage({
         description={description}
         action={createPath ? actionLabel : undefined}
         onAction={openCreate}
+        extra={<PrintButton />}
       />
       <FilterBar
         value={filters}

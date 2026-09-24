@@ -23,9 +23,9 @@ const PORTAL_TABS = {
     button: "Enter admin",
     identityLabel: "Email",
     identityType: "email",
-    shell: "bg-[#0f2744]",
-    panel: "bg-[linear-gradient(180deg,#12385f,#0b1e33)]",
-    card: "border-slate-200",
+    shell: "bg-navy-deep",
+    panel: "bg-[linear-gradient(165deg,#1a3b5c_0%,#0b1a2e_72%)]",
+    card: "border-[#e4dccb] bg-[#fffdf8]",
   },
   student: {
     id: "student",
@@ -99,15 +99,15 @@ export function LoginPage() {
 
   return (
     <div className={cn("flex min-h-screen", theme.shell)}>
-      <div className={cn("hidden w-[46%] flex-col justify-between p-10 text-white lg:flex", theme.panel)}>
-        <p className="text-sm uppercase tracking-[0.2em] text-white/70">{theme.kicker}</p>
+      <div className={cn("hidden w-[46%] flex-col justify-between p-10 text-[#f7f1e4] lg:flex", theme.panel)}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">{theme.kicker}</p>
         <div>
-          <h1 className="text-4xl font-semibold leading-tight">{theme.title}</h1>
-          <p className="mt-3 max-w-sm text-sm text-white/70">{theme.subtitle}</p>
+          <h1 className="font-serif text-4xl font-semibold leading-tight">{theme.title}</h1>
+          <p className="mt-3 max-w-sm text-sm text-[#c3d0de]">{theme.subtitle}</p>
         </div>
-        <p className="text-xs text-white/50">Switch portal with the tabs on the right</p>
+        <p className="text-xs text-[#8fa3b8]">Switch portal with the tabs on the right</p>
       </div>
-      <div className="flex flex-1 items-center justify-center bg-[#eef3f8] p-6">
+      <div className="flex flex-1 items-center justify-center bg-[#f5f1e8] p-6">
         <Card className={cn("w-full max-w-md shadow-none", theme.card)}>
           <CardHeader className="space-y-4">
             <Tabs value={portal} onValueChange={switchPortal}>

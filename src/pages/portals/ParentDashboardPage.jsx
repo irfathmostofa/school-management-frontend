@@ -5,6 +5,7 @@ import { unwrapList, unwrapRecord } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "@/components/common/DataTable";
 import { PageHeader } from "@/components/common/PageHeader";
+import { PrintButton } from "@/components/common/PrintButton";
 
 export function ParentDashboardPage() {
   const { user, selectChild } = useAuth();
@@ -42,6 +43,7 @@ export function ParentDashboardPage() {
       <PageHeader
         title="Family overview"
         description="Switch child from the top bar. Fees and notices follow the selected student."
+        extra={<PrintButton />}
       />
       <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {childRows.length ? (
