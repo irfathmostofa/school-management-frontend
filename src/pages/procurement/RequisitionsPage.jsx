@@ -23,7 +23,7 @@ export function RequisitionsPage() {
         { name: "session", label: "Session", type: "select", lookup: "session" },
         { name: "requisition_id", label: "Requisition ID" },
         { name: "type", label: "Type" },
-        { name: "designation", label: "Designation" },
+        { name: "designation", label: "Designation", type: "select", lookup: "designation" },
         { name: "campus", label: "Campus", type: "select", lookup: "campus" },
         { name: "location", label: "Location" },
         { name: "expected_date", label: "Expected date", type: "date" },

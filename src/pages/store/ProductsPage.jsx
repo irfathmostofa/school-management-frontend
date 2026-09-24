@@ -24,7 +24,7 @@ export function ProductsPage() {
       fields={[
         { name: "item", label: "Item" },
         { name: "product_id", label: "Product ID" },
-        { name: "cat", label: "Category" },
+        { name: "cat", label: "Category", type: "select", lookup: "productType" },
         { name: "brand", label: "Brand" },
         { name: "author", label: "Author" },
         { name: "publisher", label: "Publisher" },

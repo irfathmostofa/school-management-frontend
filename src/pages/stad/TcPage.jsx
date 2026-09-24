@@ -21,14 +21,14 @@ export function TcPage() {
       ]}
       fields={[
         { name: "sname", label: "Student name" },
-        { name: "Class", label: "Class" },
+        { name: "Class", label: "Class", type: "select", lookup: "class" },
         { name: "student_id", label: "Student ID" },
-        { name: "section", label: "Section" },
+        { name: "section", label: "Section", type: "select", lookup: "section" },
         { name: "sibling_info", label: "Sibling info" },
         { name: "reason", label: "Reason", type: "textarea" },
         { name: "exit_date", label: "Exit date", type: "date" },
         { name: "feedback", label: "Feedback", type: "textarea" },
-        { name: "status", label: "Status" },
+        { name: "status", label: "Status", type: "select", lookup: "status" },
         { name: "pstatus", label: "Principal status" },
         { name: "compile", label: "Compile" },
       ]}

@@ -18,7 +18,7 @@ export function ExamsPage() {
         { header: "Session", key: "session" },
       ]}
       fields={[
-        { name: "classId", label: "Class ID" },
+        { name: "classId", label: "Class", type: "select", lookup: "class" },
         { name: "title", label: "Title" },
         { name: "term", label: "Term" },
         { name: "session", label: "Session", type: "select", lookup: "session" },

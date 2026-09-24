@@ -26,8 +26,8 @@ export function UsersPage() {
         { name: "campus", label: "Campus", type: "select", lookup: "campus" },
         { name: "email", label: "Email" },
         { name: "password", label: "Password", type: "password" },
-        { name: "role", label: "Role" },
-        { name: "status", label: "Status" },
+        { name: "role", label: "Role", type: "select", lookup: "role" },
+        { name: "status", label: "Status", type: "select", lookup: "status" },
         { name: "full_name", label: "Full name" },
         { name: "user_type", label: "User type" },
       ]}

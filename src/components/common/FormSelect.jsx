@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LOOKUPS, lookupValue } from "@/api/lookups";
 import { optionLabel } from "@/hooks/useLookups";
 
 export function FormSelect({
@@ -14,25 +15,19 @@ export function FormSelect({
   placeholder = "Select",
   labelKeys = [],
   valueKey,
+  lookup,
   allowEmpty = true,
 }) {
+  const def = lookup ? LOOKUPS[lookup] : null;
+  const resolvedValueKey = valueKey || def?.valueKey;
+  const resolvedLabelKeys = labelKeys.length ? labelKeys : def?.labelKeys || [];
   const items = (options || []).map((row, idx) => {
     if (row == null) return { value: "", label: "" };
     if (typeof row !== "object") {
       return { value: String(row), label: String(row) };
     }
-    const val =
-      (valueKey && row[valueKey]) ||
-      row.campus_name ||
-      row.session ||
-      row.class_name ||
-      row.section ||
-      row.department ||
-      row.designation ||
-      row.name ||
-      row.id ||
-      idx;
-    return { value: String(val), label: optionLabel(row, labelKeys) };
+    const val = lookupValue(row, { valueKey: resolvedValueKey, labelKeys: resolvedLabelKeys }) || idx;
+    return { value: String(val), label: optionLabel(row, resolvedLabelKeys) };
   });
 
   return (

@@ -9,6 +9,7 @@ export function AttendancePage() {
       createPath="/server/addStudentAttendance"
       queryKey="student-attendance"
       showClass
+      showSection
       filterKeys={["date", "session", "class_name", "section", "campus"]}
       columns={[
         { header: "Student", key: "student_id" },

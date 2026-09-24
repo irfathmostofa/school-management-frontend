@@ -10,6 +10,7 @@ export function StudentsPage() {
       createPath="/server/addstudent"
       queryKey="students"
       showClass
+      showSection
       searchKey="searchField"
       filterKeys={["Class", "section", "session", "campus", "searchField", "page", "limit"]}
       columns={[
@@ -28,11 +29,11 @@ export function StudentsPage() {
         { name: "campus", label: "Campus", type: "select", lookup: "campus" },
         { name: "admission_date", label: "Admission date", type: "date" },
         { name: "Class", label: "Class", type: "select", lookup: "class" },
-        { name: "section", label: "Section" },
-        { name: "category", label: "Category" },
+        { name: "section", label: "Section", type: "select", lookup: "section" },
+        { name: "category", label: "Category", type: "select", lookup: "category" },
         { name: "dob", label: "Date of birth", type: "date" },
         { name: "age", label: "Age" },
-        { name: "gender", label: "Gender" },
+        { name: "gender", label: "Gender", type: "select", lookup: "gender" },
         { name: "session", label: "Session", type: "select", lookup: "session" },
         { name: "father_name", label: "Father name" },
         { name: "mother_name", label: "Mother name" },

@@ -13,6 +13,7 @@ export function FeeCollectionPage() {
       approvePath="/server/approveFeesCollection"
       queryKey="fees"
       showClass
+      showSection
       filterKeys={["Class", "section", "startDate", "endDate", "feestype", "session", "payment_mode"]}
       columns={[
         { header: "Student", key: "student_id" },
@@ -27,11 +28,11 @@ export function FeeCollectionPage() {
       fields={[
         { name: "student_id", label: "Student ID" },
         { name: "fees_info", label: "Fees info" },
-        { name: "feesType", label: "Fee type" },
+        { name: "feesType", label: "Fee type", type: "select", lookup: "feeType" },
         { name: "due_date", label: "Due date", type: "date" },
         { name: "amount", label: "Amount" },
-        { name: "payment_mode", label: "Payment mode" },
-        { name: "accAccount", label: "Account" },
+        { name: "payment_mode", label: "Payment mode", type: "select", lookup: "paymentMode" },
+        { name: "accAccount", label: "Account", type: "select", lookup: "account" },
         { name: "payment_date", label: "Payment date", type: "date" },
         { name: "discount", label: "Discount" },
         { name: "fine", label: "Fine" },

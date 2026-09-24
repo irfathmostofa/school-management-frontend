@@ -25,7 +25,7 @@ export function ResignationPage() {
         { name: "applicantName", label: "Applicant name" },
         { name: "applicantType", label: "Applicant type" },
         { name: "applicantIdNo", label: "Applicant ID" },
-        { name: "applicantTitle", label: "Title" },
+        { name: "applicantTitle", label: "Title", type: "select", lookup: "title" },
         { name: "applicantReason", label: "Reason", type: "textarea" },
         { name: "lastWorkingDay", label: "Last working day", type: "date" },
         { name: "e1", label: "E1" },

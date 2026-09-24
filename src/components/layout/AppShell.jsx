@@ -5,6 +5,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useAuth } from "@/hooks/useAuth";
+import { usePrefetchLookups } from "@/hooks/useLookups";
 
 function initials(name) {
   if (!name) return "SA";
@@ -17,6 +18,7 @@ export function AppShell() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const displayName = user?.full_name || user?.email || "Staff";
+  usePrefetchLookups(Boolean(user));
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">

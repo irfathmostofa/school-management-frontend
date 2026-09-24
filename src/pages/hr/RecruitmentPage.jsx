@@ -20,8 +20,8 @@ export function RecruitmentPage() {
       ]}
       fields={[
         { name: "applicant_name", label: "Applicant name" },
-        { name: "department_name", label: "Department" },
-        { name: "apply_for", label: "Apply for" },
+        { name: "department_name", label: "Department", type: "select", lookup: "department" },
+        { name: "apply_for", label: "Apply for", type: "select", lookup: "designation" },
         { name: "applicant_cv", label: "CV", type: "file" },
         { name: "date", label: "Date", type: "date" },
         { name: "care_of", label: "Care of" },

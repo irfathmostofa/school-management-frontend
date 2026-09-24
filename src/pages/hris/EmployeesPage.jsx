@@ -26,20 +26,20 @@ export function EmployeesPage() {
       ]}
       fields={[
         { name: "emp_id", label: "Employee ID" },
-        { name: "emp_type", label: "Employee type" },
+        { name: "emp_type", label: "Employee type", type: "select", lookup: "empType" },
         { name: "campus", label: "Campus", type: "select", lookup: "campus" },
-        { name: "emp_title", label: "Title" },
+        { name: "emp_title", label: "Title", type: "select", lookup: "title" },
         { name: "emp_fileNo", label: "File no" },
         { name: "emp_fname", label: "First name" },
         { name: "emp_lname", label: "Last name" },
         { name: "designation", label: "Designation", type: "select", lookup: "designation" },
         { name: "department", label: "Department", type: "select", lookup: "department" },
-        { name: "school", label: "School" },
-        { name: "gender", label: "Gender" },
+        { name: "school", label: "School", type: "select", lookup: "school" },
+        { name: "gender", label: "Gender", type: "select", lookup: "gender" },
         { name: "phone", label: "Phone" },
         { name: "dob", label: "Date of birth", type: "date" },
         { name: "email", label: "Email" },
-        { name: "role", label: "Role" },
+        { name: "role", label: "Role", type: "select", lookup: "role" },
         { name: "img", label: "Photo", type: "file" },
       ]}
     />

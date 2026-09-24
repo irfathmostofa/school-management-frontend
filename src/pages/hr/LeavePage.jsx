@@ -23,11 +23,11 @@ export function LeavePage() {
         { header: "Status", key: "status" },
       ]}
       fields={[
-        { name: "leaveType", label: "Leave type" },
+        { name: "leaveType", label: "Leave type", type: "select", lookup: "leaveType" },
         { name: "leaveTopic", label: "Topic" },
         { name: "applicantName", label: "Applicant name" },
         { name: "applicantType", label: "Applicant type" },
-        { name: "applicantTitle", label: "Title" },
+        { name: "applicantTitle", label: "Title", type: "select", lookup: "title" },
         { name: "applicantIdNo", label: "Applicant ID" },
         { name: "applicantContactNo", label: "Contact" },
         { name: "applicantDepartment", label: "Department", type: "select", lookup: "department" },
@@ -36,7 +36,7 @@ export function LeavePage() {
         { name: "applicantReason", label: "Reason", type: "textarea" },
         { name: "applicantDate", label: "Date", type: "date" },
         { name: "applicantLeaveTotalDays", label: "Total days" },
-        { name: "role", label: "Role" },
+        { name: "role", label: "Role", type: "select", lookup: "role" },
       ]}
     />
   );

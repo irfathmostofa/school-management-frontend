@@ -23,10 +23,10 @@ export function IncomePage() {
       fields={[
         { name: "session", label: "Session", type: "select", lookup: "session" },
         { name: "type", label: "Type" },
-        { name: "phead", label: "Head" },
+        { name: "phead", label: "Head", type: "select", lookup: "incomeHead" },
         { name: "payment_for", label: "Payment for" },
         { name: "campus", label: "Campus", type: "select", lookup: "campus" },
-        { name: "mode", label: "Mode" },
+        { name: "mode", label: "Mode", type: "select", lookup: "paymentMode" },
         { name: "account_id", label: "Account ID" },
         { name: "note", label: "Note", type: "textarea" },
         { name: "amount", label: "Amount" },

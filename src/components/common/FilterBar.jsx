@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { FormSelect } from "@/components/common/FormSelect";
-import { useCampuses, useClasses, useSessions } from "@/hooks/useLookups";
+import { useCampuses, useClasses, useSections, useSessions } from "@/hooks/useLookups";
 
 export function FilterBar({
   value = {},
@@ -8,12 +8,14 @@ export function FilterBar({
   searchKey = "search",
   showCampus = true,
   showClass = false,
+  showSection = false,
   showSession = true,
   extra,
 }) {
   const campuses = useCampuses();
   const sessions = useSessions();
   const classes = useClasses({ session: value.session, campus: value.campus });
+  const sections = useSections({ session: value.session, campus: value.campus });
   const patch = (next) => onChange?.({ ...value, ...next });
 
   return (
@@ -38,6 +40,7 @@ export function FilterBar({
             value={value.campus || ""}
             onChange={(campus) => patch({ campus: campus === "all" ? "" : campus })}
             options={campuses.data || []}
+            lookup="campus"
             placeholder="Campus"
           />
         </div>
@@ -48,6 +51,7 @@ export function FilterBar({
             value={value.session || ""}
             onChange={(session) => patch({ session: session === "all" ? "" : session })}
             options={sessions.data || []}
+            lookup="session"
             placeholder="Session"
           />
         </div>
@@ -64,7 +68,24 @@ export function FilterBar({
               })
             }
             options={classes.data || []}
+            lookup="class"
             placeholder="Class"
+          />
+        </div>
+      ) : null}
+      {showSection ? (
+        <div className="w-40">
+          <FormSelect
+            value={value.section || value.section_name || ""}
+            onChange={(section) =>
+              patch({
+                section: section === "all" ? "" : section,
+                section_name: section === "all" ? "" : section,
+              })
+            }
+            options={sections.data || []}
+            lookup="section"
+            placeholder="Section"
           />
         </div>
       ) : null}

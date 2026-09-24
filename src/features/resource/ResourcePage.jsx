@@ -14,7 +14,7 @@ import { StatusBadge } from "@/components/common/StatusBadge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FormSelect } from "@/components/common/FormSelect";
-import { useCampuses, useClasses, useDepartments, useDesignations, useSessions } from "@/hooks/useLookups";
+import { useLookupCatalog } from "@/hooks/useLookups";
 import { unwrapList } from "@/lib/utils";
 import { PrintButton } from "@/components/common/PrintButton";
 
@@ -42,6 +42,7 @@ function FieldControl({ field, value, onChange, lookups }) {
         value={value || ""}
         onChange={(v) => onChange(v === "all" ? "" : v)}
         options={options}
+        lookup={field.lookup}
         placeholder={field.placeholder || field.label}
         allowEmpty={false}
       />
@@ -75,6 +76,7 @@ export function ResourcePage({
   idField = "id",
   filterKeys = [],
   showClass = false,
+  showSection = false,
   showCampus = true,
   showSession = true,
   searchKey = "search",
@@ -91,25 +93,14 @@ export function ResourcePage({
   const [files, setFiles] = useState({});
   const [confirm, setConfirm] = useState(null);
 
-  const campuses = useCampuses();
-  const sessions = useSessions();
-  const classes = useClasses({ session: filters.session, campus: filters.campus });
-  const departments = useDepartments();
-  const designations = useDesignations();
-  const lookups = {
-    campus: campuses.data || [],
-    session: sessions.data || [],
-    class: classes.data || [],
-    department: departments.data || [],
-    designation: designations.data || [],
-  };
+  const lookups = useLookupCatalog({ session: filters.session, campus: filters.campus });
 
   const queryFilters = useMemo(() => {
     const body = { ...(listBody || {}) };
     filterKeys.forEach((key) => {
       if (filters[key]) body[key] = filters[key];
     });
-    ["campus", "session", "class_name", "Class", "className", "search", "searchFilter", "searchField"].forEach(
+    ["campus", "session", "class_name", "Class", "className", "section", "section_name", "search", "searchFilter", "searchField"].forEach(
       (key) => {
         if (filters[key]) body[key] = filters[key];
       }
@@ -215,6 +206,7 @@ export function ResourcePage({
         showCampus={showCampus}
         showSession={showSession}
         showClass={showClass}
+        showSection={showSection}
       />
       <DataTable
         columns={tableColumns}

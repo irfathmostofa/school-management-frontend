@@ -10,6 +10,7 @@ export function RoutinesPage() {
       createPath="/server/addPeriods"
       queryKey="routines"
       showClass
+      showSection
       filterKeys={["class_name", "section_name", "campus", "session"]}
       columns={[
         { header: "Class", key: "class_name" },
